@@ -1,7 +1,12 @@
-import Link from "next/link";
+"use client"
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function WeatherCard({ weather, places, country }) {
-    console.log(weather?.name,"name...")
+  const city = weather?.name?.split(" ").join("").toLowerCase()
+    console.log(weather?.name,"name...",weather?.name?.split(" ").join("").toLowerCase())
+    const pathname = usePathname()
+    const router = useRouter()
     return (
       <div className="shadow-lg rounded-lg p-6 bg-[#f7d6d080] flex flex-col justify-center" >
         {/* Weather Information */}
@@ -28,11 +33,14 @@ export default function WeatherCard({ weather, places, country }) {
               <li key={place.fsq_id}>{place?.name}</li>
             ))}
           </ul>
-  
         </div>
-        <Link  href={`/dashboard/${weather?.name.split(" ").join("")}`} className="bg-black text-white p-2 mt-4 rounded text-center">
-        View
-      </Link>
+        {pathname === "/dashboard"&&
+            <div className="flex justify-center p-2">
+            <button onClick= {() => { router.push(`/city/${city}`)}}  className="hidden md:inline-block bg-white hover:bg-[#f7d6d0] px-4 py-2 rounded-lg text-black">
+              View More
+            </button>
+            </div>
+}
       </div>
     );
   }
