@@ -1,5 +1,7 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { LOGIN } from "../constants/apiEndpoint";
+
 
 export const authOptions = {
   providers: [
@@ -12,7 +14,7 @@ export const authOptions = {
       authorize: async(credentials) => {
         try {
           const response = await axios.post(
-            `http://192.168.15.49:5000/api/v1/logisticUser/login`,
+            `${LOGIN}`,
             {
               email: credentials?.email,
               password: credentials?.password,
@@ -25,7 +27,6 @@ export const authOptions = {
           );
 
           const { statusCode, data } = response.data;
-          console.log(data)
           if (statusCode === 'SUC' && data) {
             const user = {
               id: credentials.email, // or any unique identifier from the response
@@ -40,7 +41,6 @@ export const authOptions = {
             return null
           }
         } catch (error) {
-            console.log(error,"error")
           return null;
         }
       },

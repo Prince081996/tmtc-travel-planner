@@ -2,13 +2,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname()
 
   return (
-    <nav className="bg-gray-800 text-white">
+    <nav className="bg-gray-800 text-white sticky top-0 z-[1]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Left Side: Logo and Dashboard */}
@@ -23,7 +24,11 @@ export default function Navbar() {
 
           {/* Right Side: Logout Button and Mobile Menu Icon */}
           <div className="flex items-center space-x-4">
-            <button className="hidden md:inline-block bg-white hover:bg-[#f7d6d0] px-4 py-2 rounded-lg text-black">
+            <button onClick={() => {
+              localStorage.clear()
+              signOut()
+            }
+            } className="hidden md:inline-block bg-white hover:bg-[#f7d6d0] px-4 py-2 rounded-lg text-black">
               Logout
             </button>
             {/* Mobile Menu Icon */}
@@ -44,7 +49,10 @@ export default function Navbar() {
         {/* Mobile Dropdown Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-2">
-            <button className="w-full bg-pink-500 hover:bg-pink-600 px-4 py-2 rounded-lg text-white">
+            <button onClick={() => {
+              signOut()
+              localStorage.clear()
+            }} className="w-full bg-white hover:bg-[#f7d6d0]  px-4 py-2 rounded-lg text-black">
               Logout
             </button>
           </div>

@@ -1,45 +1,37 @@
 "use client"
 import Map from '@/app/components/Map'
+import WeatherCard from '@/app/components/WeatherCard'
 import { filterCity } from '@/app/utils/helper'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 
-
 const page = ({params}) => {
-  const [cityItems,setCityItems] = useState()
+  const {city} = params
+  const [cityItems,setCityItems] = useState([])
   useEffect(() => {
    const savedCities = JSON.parse(localStorage.getItem("cities"))
-    const cityItem = filterCity(savedCities,params?.city)
-    setCityItems(cityItem)
+    const cityItem = filterCity(savedCities,city)
+    if(cityItem?.length >0 ){
+      setCityItems(cityItem)
+    }
+
   },[])
 
   return (
-    <div>
-        {/* List of Places */}
-        <Head>
-        <title>{params?.city ? `${params?.city} - City Information` : "City Information"}</title>
-        <meta name="description" content={`Learn about ${params?.city}'s current weather, places to visit, and country information.`} />
-        <meta property="og:title" content={`${params?.city ? `${params?.city} - City Information` : "City Information"}`} />
-        <meta property="og:description" content={`Find out more about ${params?.city}: weather, tourist spots, and country details.`} />
-      </Head>
-        <div className="w-full flex justify-center  lg:w-1/2 space-y-4">
-          <div className="w-full   bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Place Names</h2>
-          <ul className="max-h-48 overflow-y-auto space-y-2">
-            {cityItems?.length > 0 && cityItems[0]?.[params?.city]?.places?.map((place,index)=> (
-              <li
-                key={index}
-                className="p-2 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-200"
-              >
-                {place.name}
-              </li>
-            ))}
-          </ul>
-          <Map places={cityItems?.length > 0 && cityItems[0]?.[params?.city]?.places} />
-        </div>
+      <div className="p-6 w-full mx-auto">
+        {
+          cityItems?.length > 0 &&
+          <div className='w-full '>
+          <div className='flex md:justify-between md:flex-row flex-col'>
+            <WeatherCard weather={ cityItems[0]?.[city]?.weather} places={ cityItems[0]?.[city]?.places} country={cityItems[0]?.[city]?.country} isDetailed={true} />
+            <Map places={cityItems?.length > 0 && cityItems[0]?.[city]?.places} />
+            </div>
+            <div>
+                   </div>
+                   </div>
+               
+        }
       </div>
-   
-    </div>
   )
 }
 
