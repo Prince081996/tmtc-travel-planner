@@ -20,7 +20,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 For Login Use the given credentials 
 email:amit.sharma1@sveltetech.com
-password:876543
+password:87654321
 
 Then, run the development server:
 
