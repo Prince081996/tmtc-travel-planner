@@ -1,6 +1,5 @@
 "use client"
 import { useState } from 'react';
-import axios from 'axios';
 import WeatherCard from '../components/WeatherCard';
 import { GET_FOUR_SQUARE_PLACES, GET_OPEN_WEATHER, GET_REST_COUNTRIES } from '../constants/apiEndpoint';
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,7 +17,6 @@ export default function CityInfo() {
   const [loading, setLoading] = useState(false);
   const [disabled,setDisabled] = useState(false)
   const dispatch = useDispatch()
-// const  savedCities = useSelector((state) => state?.cities?.cities)
   const fetchCountryDetails = async(country) => {
     const endPoint =   `${GET_REST_COUNTRIES}${country}?fullText=${true}`
     const countryRes = await axiosInstance.get(endPoint)
@@ -33,7 +31,6 @@ export default function CityInfo() {
       Authorization: process.env.NEXT_PUBLIC_FOURSQUARE_API_KEY,
     }})
     if(placesRes?.status === 200){
-      console.log(placesRes,"placesss")
       return  placesRes?.data?.results
     
     }
@@ -55,7 +52,7 @@ export default function CityInfo() {
         }
         setData(resObj);
         setLoading(false);
-        console.log(countryRes,placesRes,"fetches...")
+
       }
     } catch (error) {
       setData(null)
@@ -93,7 +90,6 @@ const handleSaveCity = () => {
   }
   let cityArr=[cityObj]
   const savedCities = JSON.parse(localStorage.getItem("cities"))
-  console.log(savedCities,"savedCities...")
   if(savedCities?.length > 0){
     savedCities?.push(cityObj)
     localStorage.setItem("cities", JSON.stringify(savedCities))
@@ -116,7 +112,6 @@ const handleKeyDown = (e) => {
     handleSearch();
   }
 };
-console.log(disabled,"disabled...")
 const handleInputChange = (e) => {
   if(e.target.value === ""){
     if(disabled){
@@ -128,7 +123,7 @@ const handleInputChange = (e) => {
 }
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold text-center mb-4">City Weather & Guide</h1>
+      <h1 className="text-2xl font-bold text-center mb-4">City Weather & Places Guide</h1>
 
       <div className="flex py-4 items-center w-full max-w-md mx-auto mt-4">
       <div className="relative flex-grow">
@@ -137,7 +132,7 @@ const handleInputChange = (e) => {
           value={city}
           onChange={(e) => handleInputChange(e)}
           onKeyDown={handleKeyDown}
-          placeholder="Search..."
+          placeholder="Enter City name"
           className="w-full px-4 py-2 pr-10 text-gray-800 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         {city && (
@@ -159,7 +154,7 @@ const handleInputChange = (e) => {
         )}
       </div>
       <button
-          className="bg-blue-500 text-white p-2 ml-2 rounded-md"
+          className="bg-black hover:bg-[#f7d6d0] hover:text-black text-white p-2 ml-2 rounded-md"
           onClick={handleSearch}
           disabled={loading}
         >
@@ -186,10 +181,6 @@ const handleInputChange = (e) => {
       </button>
         </div>
       )
-      // :
-      // <div>
-      //   <span className='text-xl text-center font-medium'>No Results Found From The Given Keyword!</span>
-      // </div>
       }
    
     </div>

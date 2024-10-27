@@ -1,13 +1,8 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-const containerStyle = {
-  width: '100%',
-  height: '400px',
-};
-const mapContainerStyle = { width: "100%", height: "100%" }; 
-const Map = ({ places }) => {
+
+const mapContainerStyle = { width: "100%", height: "100%" }; const Map = ({ places }) => {
     const center = {
         lat: places?.[0]?.geocodes?.main?.latitude, // Default center, change as needed
         lng: places?.[0]?.geocodes?.main?.longitude,

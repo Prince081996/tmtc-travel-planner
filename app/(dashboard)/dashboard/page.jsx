@@ -19,7 +19,7 @@ const page = () => {
   savedCities?.length > 0 ?
   <div>
       <h1 className='p-4 font-bold md:text-3xl'>List Of Saved Cities!</h1>
-      <div className='flex flex-col md:flex-row'>
+      <div className='flex flex-col md:flex-row md:flex-wrap'>
      {savedCities?.map((item,index) => { 
         return(
             <div key={index}> 
@@ -29,7 +29,6 @@ const page = () => {
                 weather={cityInfo?.weather}
                 places={cityInfo?.places}
                 country={cityInfo?.country} />
-                {/* <Map places={item?.places} /> */}
                 </div>
             
         ))}

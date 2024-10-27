@@ -2,35 +2,25 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First Add The Following keys in env 
+"Don't Use these keys anywhere these are just for this project"
+
+NEXT_PUBLIC_FOURSQUARE_API_KEY = "fsq3WMcGQl+hP30inkihPJH34er7ZaYXPxB05RnK90phxSs="
+NEXT_PUBLIC_OPENWEATHER_API_KEY = "1448db4bc170e13fe0f7cb3f3293da9a"
+NEXTAUTH_SECRET = 38078e58fa4878f4def1a2de3c0c38840dd8475caeb02a9e364a060500497d85
+NEXTAUTH_URL="http://localhost:3000"
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="AIzaSyCweIJswTkjvZRuhh6YLLoCNEZ-Rc2PDMA"
+
+IF You Are Facing The Error in NEXTAUTH_SECRET 
+Run this command to get secret
+node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
+Then, run the development server:
 
 ```bash
 npm run dev
 # or
 yarn dev
 # or
-pnpm dev
-# or
-bun dev
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
