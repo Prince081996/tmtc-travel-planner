@@ -2,6 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Make Sure all the dependecies have been installed 
+npm i
+
 First Add The Following keys in env 
 "Don't Use these keys anywhere these are just for this project"
 
@@ -15,6 +18,10 @@ IF You Are Facing The Error in NEXTAUTH_SECRET
 Run this command to get secret
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
+For Login Use the given credentials 
+email:amit.sharma1@sveltetech.com
+password:876543
+
 Then, run the development server:
 
 ```bash
@@ -22,5 +29,5 @@ npm run dev
 # or
 yarn dev
 # or
-
 ```
+
