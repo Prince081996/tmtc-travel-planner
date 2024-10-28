@@ -70,7 +70,7 @@ const SignIn = () => {
               <div>
                 <label class="text-gray-800 text-sm mb-2 block">Email</label>
                 <div class="relative flex items-center">
-                  <input onChange={handleChangeInput} name="email" type="text" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter user name" />
+                  <input onChange={handleChangeInput} name="email" type="email" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter user name" />
                
                 </div>
               </div>
