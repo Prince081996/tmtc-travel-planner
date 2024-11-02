@@ -44,7 +44,7 @@ export default function WeatherCard({ weather, places, country,isDetailed }) {
         {
         pathname === "/dashboard"&&
             <div className="flex justify-center p-2">
-            <button onClick= {() => { router.push(`/city/${city}`)}}  className="hidden md:inline-block bg-white hover:bg-[#f7d6d0] px-4 py-2 rounded-lg text-black">
+            <button onClick= {() => { router.push(`/city/${city}`)}}  className=" bg-white hover:bg-[#f7d6d0] px-4 py-2 rounded-lg text-black">
               Discover More
             </button>
             </div>

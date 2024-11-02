@@ -36,6 +36,7 @@ const SignIn = () => {
           password: userCred?.password,
           redirect: false,
         });
+        console.log("going",res.ok)
         if (res?.ok) {
           if (session && status === "authenticated") {
             Toaster("success", "LoggedIn Successfully");
@@ -68,22 +69,21 @@ const SignIn = () => {
             <h2 className="text-gray-800 text-center text-2xl font-bold">Sign in</h2>
             <form className="mt-8 space-y-4 flex flex-col" onSubmit={(e) => handleClick(e)}>
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Email</label>
+                <label htmlFor="email" className="text-gray-800 text-sm mb-2 block">Email</label>
                 <div className="relative flex items-center">
-                  <input onChange={handleChangeInput} name="email" type="email" required className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter user name" />
-               
+                  <input id="email" onChange={handleChangeInput} name="email" type="email" required className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter user name" />
                 </div>
               </div>
 
               <div>
-                <label className="text-gray-800 text-sm mb-2 block">Password</label>
+                <label htmlFor="password"  className="text-gray-800 text-sm mb-2 block">Password</label>
                 <div className="relative flex items-center">
-                  <input onChange={handleChangeInput} name="password" type={passwordType} required className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter password" />
+                  <input id="password" onChange={handleChangeInput} name="password" type={passwordType} required className="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter password" />
                   <button
         type="button"
         onClick={togglePassword}
         className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-indigo-500 transition"
-        aria-label={showPassword ? "Hide password" : "Show password"}
+        aria-label="Toggle password visibility"
       >
                      { passwordType==="password"? <FaEyeSlash />:<FaEye />}
                      </button>
